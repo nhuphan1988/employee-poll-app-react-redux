@@ -56,7 +56,8 @@ const NewPoll = ({dispatch})=>{
                     maxLength={150}
                     />
                 <button 
-                    className="btn"
+                    id="submit"
+                    className="btn" 
                     type="submit" 
                     disabled={textOptionOne === "" && textOptionTwo === ""}
                     >

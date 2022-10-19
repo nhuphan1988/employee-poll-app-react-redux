@@ -3,9 +3,27 @@ import { connect } from "react-redux";
 const Leaderboard = (props) =>{
     const {users} = props;
 
-    const userList = Object.values(users);
+    let data = []
+    let obj = {}
+    Object.values(users).map(user=>{
+        obj = {
+            id: user.id,
+            name: user.name,
+            avatarURL: user.avatarURL,
+            numofAnswers: Object.keys(user.answers).length,
+            numofQuestions: user.questions.length
+        }
+        data.push(obj)
+    })
     
-    console.log(userList)
+    console.log(data)
+
+    const dataSorted = data
+        .sort((a,b)=>b.numofAnswers - a.numofAnswers)    
+        .sort((a,b)=>b.numofQuestions - a.numofQuestions)
+        
+
+    
 
     const columns = [
         {heading: 'User'},
@@ -16,7 +34,7 @@ const Leaderboard = (props) =>{
     return(
         <div className="App">
             <table className="table">
-                <thead>
+                <thead className="table-head">
                     <tr>
                         {columns.map((item, index)=> (
                             <th key={index}>{item.heading}</th>
@@ -24,15 +42,15 @@ const Leaderboard = (props) =>{
                     </tr>
                 </thead>
                 <tbody>
-                    {userList.map((user, index)=>(
+                    {dataSorted.map((user, index)=>(
                         <tr key={index}>
                             <td>
                                 <img src={user.avatarURL} alt={`Avatar of ${user.id}`} className="avatar" />
-                                <p>{user.name}</p>
-                                <p>{user.id}</p>
+                                <p className="username">{user.name}</p>
+                                <p className="userid">{user.id}</p>
                             </td>
-                            <td>{Object.keys(user.answers).length}</td>
-                            <td>{user.questions.length}</td>
+                            <td>{user.numofAnswers}</td>
+                            <td>{user.numofQuestions}</td>
                         </tr>
                     ))}
                 </tbody>

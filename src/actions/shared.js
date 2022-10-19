@@ -6,7 +6,7 @@ import { showLoading, hideLoading } from "react-redux-loading-bar";
 import {saveQuestionAnswer, saveQuestion} from "../utils/api"
 
 
-const AUTHED_ID = "sarahedo";
+// const AUTHED_ID = "sarahedo";
 
 export function handleInitialData(){
     return(dispatch)=>{
@@ -14,7 +14,7 @@ export function handleInitialData(){
         return getInitialData().then(({users,questions})=>{
             dispatch(receiveUsers(users));
             dispatch(receiveQuestions(questions));
-            dispatch(setAuthedUser(AUTHED_ID));
+            // dispatch(setAuthedUser(AUTHED_ID));
             dispatch(hideLoading());
         })
     }
