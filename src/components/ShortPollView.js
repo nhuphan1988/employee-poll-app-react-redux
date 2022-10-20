@@ -15,6 +15,7 @@ const ShortPollView = (props)=>{
 
     console.log(props)
     const {author, timestamp, id}= props.question
+    
     return (
         <Link to={`/question/${id}`}>
             <div className="center question">

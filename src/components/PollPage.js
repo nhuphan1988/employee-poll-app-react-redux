@@ -17,7 +17,12 @@ const withRouter = (Component) => {
 const PollPage = (props)=>{
 
     console.log(props);
-    const {dispatch, question, avatar, authedUser} = props;
+    const {dispatch, question, users, authedUser} = props;
+
+    let avatar = "";
+    if (users & question){
+        avatar = users[question.author].avatarURL
+    }
 
     const alreadyVotedOne = ()=>{
         if(question.optionOne.votes.includes(authedUser)){
@@ -86,7 +91,7 @@ const PollPage = (props)=>{
                     {numOfVotesTotal >0 && (
                         <div>
                             <div className="vote-info">Number of Votes: {numOfVotesOne}/{numOfVotesTotal}</div>
-                            <div className="vote-info">Percentage of Votes: {percentageOfVotesOne} % </div>
+                            <div data-testid = "percentageOne" className="vote-info">Percentage of Votes: {percentageOfVotesOne} % </div>
                         </div>
                     )}
                 </div>
@@ -104,7 +109,7 @@ const PollPage = (props)=>{
                     {numOfVotesTotal >0 && (
                         <div>
                             <div className="vote-info">Number of Votes: {numOfVotesTwo}/{numOfVotesTotal}</div>
-                            <div className="vote-info">Percentage of Votes: {percentageOfVotesTwo} %</div>
+                            <div data-testid = "percentageTwo" className="vote-info">Percentage of Votes: {percentageOfVotesTwo} %</div>
                         </div>
                     )}
                 </div>
@@ -116,11 +121,11 @@ const PollPage = (props)=>{
 const mapStateToProps = ({questions, users, authedUser}, props)=>{
     const {id} = props.router.params;
     const question = questions[id];
-    const avatar = users[question.author].avatarURL
+    
     
     return{
         question,
-        avatar,
+        users,
         authedUser,
     }
 }

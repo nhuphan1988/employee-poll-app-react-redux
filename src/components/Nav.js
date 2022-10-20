@@ -25,20 +25,20 @@ const Nav = (props) => {
                     {authedUser !== null 
                     ? (
                         <div>
-                            <li className="left-nav">
+                            <li data-testid = "home" className="left-nav">
                                 <Link to="/">Home</Link>
                             </li>
-                            <li className="left-nav">
+                            <li data-testid = "leaderboard" className="left-nav">
                                 <Link to="/leaderboard">Leaderboard</Link>
                             </li>
-                            <li className="left-nav">
+                            <li data-testid = "new" className="left-nav">
                                 <Link to="/new">New</Link>
                             </li>
                             <li className="right-nav">
-                                <img src={avatar} alt={`Avatar of ${authedUser}`} className="avatar" />
-                                <div className="userid">{authedUser}</div>
+                                <img data-testid = "avatar" src={avatar} alt={`Avatar of ${authedUser}`} className="avatar" />
+                                <div data-testid = "username" className="userid">{authedUser}</div>
                             </li>
-                            <li className="right-nav" onClick={handleLogout}>
+                            <li data-testid = "logout" className="right-nav" onClick={handleLogout}>
                                 <Link to="/login">Logout</Link>
                             </li>
                         </div>

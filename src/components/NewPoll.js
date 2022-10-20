@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { connect } from "react-redux";
 import { handleAddQuestion } from "../actions/shared";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 const NewPoll = ({dispatch})=>{
     const navigate = useNavigate();
+
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState(false);
 
     const [textOptionOne, setTextOptionOne] = useState("");
     const [textOptionTwo, setTextOptionTwo] = useState("");
@@ -25,13 +28,18 @@ const NewPoll = ({dispatch})=>{
     
     const handleSubmit = (e) => {
         e.preventDefault();
-    
-        dispatch(handleAddQuestion(textOptionOne, textOptionTwo));
-    
-        setTextOptionOne("");
-        setTextOptionTwo("");
-    
-        navigate('/')
+        if(!textOptionOne || !textOptionTwo){
+            setSuccess(false);
+            setError(true);
+
+        }else{
+            dispatch(handleAddQuestion(textOptionOne, textOptionTwo));
+            setSuccess(true);
+            setError(false);
+            setTextOptionOne("");
+            setTextOptionTwo("");
+            // navigate('/')
+        }  
     };
       
     return(
@@ -41,6 +49,7 @@ const NewPoll = ({dispatch})=>{
             <form className="new-question" onSubmit={handleSubmit} >
                 <p>Option One</p>
                 <textarea
+                    data-testid="text-option-one"
                     placeholder="Option One"
                     value={textOptionOne}
                     onChange={handleChangeOptionOne}
@@ -49,6 +58,7 @@ const NewPoll = ({dispatch})=>{
                     />
                 <p>Option Two</p>
                 <textarea
+                    data-testid="text-option-two"
                     placeholder="Option Two"
                     value={textOptionTwo}
                     onChange={handleChangeOptionTwo}
@@ -57,6 +67,7 @@ const NewPoll = ({dispatch})=>{
                     />
                 <button 
                     id="submit"
+                    data-testid="submit-button"
                     className="btn" 
                     type="submit" 
                     disabled={textOptionOne === "" && textOptionTwo === ""}
@@ -64,6 +75,12 @@ const NewPoll = ({dispatch})=>{
                     Submit
                 </button>
             </form>
+            {success &&
+                <h3 className="Success" data-testid="success-header">Poll Submitted Successfully!</h3>
+            }
+            {error &&
+                <h3 className="Error" data-testid="error-header">Error in submitting question. Please try again!</h3>
+            }
         </div>
     )
 }

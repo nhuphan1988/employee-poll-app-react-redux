@@ -46,11 +46,11 @@ const Leaderboard = (props) =>{
                         <tr key={index}>
                             <td>
                                 <img src={user.avatarURL} alt={`Avatar of ${user.id}`} className="avatar" />
-                                <p className="username">{user.name}</p>
+                                <p data-testid="username" className="username">{user.name}</p>
                                 <p className="userid">{user.id}</p>
                             </td>
-                            <td>{user.numofAnswers}</td>
-                            <td>{user.numofQuestions}</td>
+                            <td data-testid="numofAnswers">{user.numofAnswers}</td>
+                            <td data-testid="numofQuestions">{user.numofQuestions}</td>
                         </tr>
                     ))}
                 </tbody>

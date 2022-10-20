@@ -44,8 +44,6 @@ const Dashboard = (props)=>{
         </div>
         
     )
-
-
 }
 
 const mapStateToProps = ({questions, authedUser, users})=>{

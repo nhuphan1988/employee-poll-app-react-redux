@@ -5,15 +5,13 @@ import { handleInitialData } from "../actions/shared";
 import Dashboard from "./Dashboard";
 import LogInBox from "./LogInBox";
 import PollPage from "./PollPage";
-import NewPoll from "./PollCreationPage";
+import NewPoll from "./NewPoll";
 import Leaderboard from "./Leaderboard";
 import Nav from "./Nav";
-import { Routes, Route, useNavigate, Navigate} from "react-router-dom";
-// import { Redirect } from 'react-router';
+import { Routes, Route, Navigate} from "react-router-dom";
 import NotFound from "./NotFound";
 
 const App = (props) =>{
-    const navigate = useNavigate();
 
     useEffect(()=>{
         props.dispatch(handleInitialData());
@@ -22,17 +20,26 @@ const App = (props) =>{
     return (
         <Fragment>
             <div className="app-container">
-                <Nav />    
-                <Routes>
-                    <Route exact path="/" element={!props.signIn ? <Navigate to="/login" /> : <Dashboard />} />
-                    <Route path="/leaderboard" element={!props.signIn ? <Navigate to="/login" /> : <Leaderboard />} />
-                    <Route path="/question/:id" element={!props.signIn ? <Navigate to="/login" /> : <PollPage />} />
-                    <Route path="/new" element={!props.signIn ? <Navigate to="/login" /> : <NewPoll />} />
-                    <Route path="*" element={!props.signIn ? <Navigate to="/login" /> : <NotFound />} />
+                <Nav />
+                {!props.signIn 
+                ? (
+                    <Routes>
+                        <Route path="/login" element={<LogInBox />} />
+                    </Routes>
+                )
+                :(
+                    <Routes>
+                    <Route exact path="/" element={<Dashboard />} />
+                    <Route path="/leaderboard" element={<Leaderboard />} />
+                    <Route path="/question/:id" element={<PollPage />} />
+                    <Route path="/new" element={<NewPoll />} />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
+                )}   
+                
             </div>
         </Fragment>
-  );
+    )
 }
 
 const mapStateToProps = ({ authedUser }) => ({
@@ -40,18 +47,3 @@ const mapStateToProps = ({ authedUser }) => ({
 });
 
 export default connect(mapStateToProps)(App);
-
-// import {Navigate} from "react-router-dom";
-// import {connect} from "react-redux";
-
-// const PrivateRoute = ({children, loggedIn}) => {
-//     const redirectUrl = window.location.href.toString().split(window.location.host)[1];
-
-//     return loggedIn ? children : <Navigate to={`/login?redirectTo=${redirectUrl}`}/>;
-// };
-
-// const mapStateToProps = ({authedUser}) => ({
-//     loggedIn: !!authedUser,
-// });
-
-// export default connect(mapStateToProps)(PrivateRoute);
