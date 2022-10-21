@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { connect } from "react-redux";
 import { handleAddQuestion } from "../actions/shared";
-import { useNavigate} from "react-router-dom";
 
 const NewPoll = ({dispatch})=>{
-    const navigate = useNavigate();
 
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
@@ -14,15 +12,11 @@ const NewPoll = ({dispatch})=>{
 
     const handleChangeOptionOne = (e) => {
         const textOptionOne = e.target.value;
-
-        console.log(textOptionOne)
         setTextOptionOne(textOptionOne);
     };
 
     const handleChangeOptionTwo = (e) => {
         const textOptionTwo = e.target.value;
-
-        console.log(textOptionTwo)
         setTextOptionTwo(textOptionTwo);
     };
     
@@ -36,9 +30,9 @@ const NewPoll = ({dispatch})=>{
             dispatch(handleAddQuestion(textOptionOne, textOptionTwo));
             setSuccess(true);
             setError(false);
+
             setTextOptionOne("");
             setTextOptionTwo("");
-            // navigate('/')
         }  
     };
       

@@ -1,9 +1,6 @@
-import {saveQuestion} from "../utils/api"
-
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const VOTE_QUESTION = 'VOTE_QUESTION';
 export const ADD_QUESTION = 'ADD_QUESTION';
-
 
 export function receiveQuestions(questions){
     return {

@@ -2,7 +2,7 @@ import image from '../avatars/computer-science-1331579.png';
 import { connect } from "react-redux";
 import { handleLogIn} from "../actions/authedUser";
 import { useNavigate} from "react-router-dom";
-import { useState } from "react";
+import { useState} from "react";
 
 const LogInBox = (props)=>{
     const [logInUser, setLogInUser] = useState("");
@@ -13,24 +13,17 @@ const LogInBox = (props)=>{
 
     const {users, dispatch} = props;
 
-    const userIds = Object.keys(users);
-
     const handleChangeUser = (e) => {
         const logInUser = e.target.value;
-        console.log(logInUser)
         setLogInUser(logInUser)
     };
 
     const handleChangePassword = (e) => {
         const logInPassword = e.target.value;
-        console.log(logInPassword);
         setLogInPassword(logInPassword);
     };
 
-    const passwordMatched=()=>{
-        console.log(users[logInUser])
-        console.log(users[logInUser].password)
-        
+    const passwordMatched=()=>{        
         if(users[logInUser] && users[logInUser].password === logInPassword){
             setError(false)
             return true
@@ -38,22 +31,17 @@ const LogInBox = (props)=>{
             setError(true)
             return false;
         }
-        
-        
     }
 
     const handleSubmit=(e)=>{
         e.preventDefault();
-        const id = e.target.value;
 
         if (passwordMatched()=== true){
-            dispatch(handleLogIn(logInUser))
-            navigate("/")
+            dispatch(handleLogIn(logInUser));
+            navigate(-1)
         }
-
         setLogInUser("");
         setLogInPassword("");
-
     }
 
     return (
@@ -64,23 +52,23 @@ const LogInBox = (props)=>{
             <p></p>
             <form className="login" onSubmit={handleSubmit} >
                 <div>
-                <p>User</p>
-                <textarea
-                    data-testid="username-input"
-                    placeholder="User"
-                    value={logInUser}
-                    onChange={handleChangeUser}
-                    className="login-textarea"
-                    maxLength={50}
+                    <p>User</p>
+                    <textarea
+                        data-testid="username-input"
+                        placeholder="User"
+                        value={logInUser}
+                        onChange={handleChangeUser}
+                        className="login-textarea"
+                        maxLength={50}
                     />
-                <p>Password</p>
-                <textarea
-                    data-testid="password-input"
-                    placeholder="Password"
-                    value={logInPassword}
-                    onChange={handleChangePassword}
-                    className="login-textarea"
-                    maxLength={50}
+                    <p>Password</p>
+                    <textarea
+                        data-testid="password-input"
+                        placeholder="Password"
+                        value={logInPassword}
+                        onChange={handleChangePassword}
+                        className="login-textarea"
+                        maxLength={50}
                     />
                 </div>
                 <button
@@ -89,8 +77,7 @@ const LogInBox = (props)=>{
                     className="btn" 
                     type="submit" 
                     disabled={logInUser === "" && logInPassword === ""}
-                    >
-                    Submit
+                >Submit
                 </button>
             </form>
             {error &&
@@ -100,9 +87,10 @@ const LogInBox = (props)=>{
     )
 }
 
-const mapStateToProps = ({users})=>{
+const mapStateToProps = ({users},{prevRoute})=>{
     return{
         users,
+        prevRoute,
     }
 }
 

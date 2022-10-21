@@ -1,6 +1,42 @@
-# Getting Started with Create React App
+# Employee Polls App - React and Redux
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Employees can use this app internally in order to improve collaboration and transparency within the company, every employee can access the application and create a poll with two proposed solutions.
+
+## App Functionality
+1. User can log in and log out:
+- The application allows the user to log out and log back in. The user should be logged in to submit new polling questions, vote, and view the leaderboard.
+- Whenever the user types something in the address bar, the user is asked to log in before the requested page is shown (private routes)
+
+2. Home Page/Dashboard:
+- Has answered and unanswered polls. Polling question resides in correct category
+- A polling question links to details of that poll
+
+3. PollPage:
+- The details of the poll are available at "questions/:question_id".
+- Poll datails includes: avatar of author, two options, number and percentage of votes for each option.
+- User is able to vote. Upon voting, all information is displayed, including user's response. When user come back to homepage, the polling question appears in "Answered" section. Data of leaderboard will change accordingly.
+
+4. Add New Poll:
+- The form is available at "/new".
+- Upon submitting the form, a new poll is created. The new polling question appears in the correct category on the home page.
+
+5. Leaderboard:
+- The Leaderboard is available at "/leaderboard".
+- Each entry contains the following: username, user's avatar, number of questions asked, number of questions answered, ordered descendingly based on sum of number of questions asked, then by number of questions answered.
+
+6. Navigation:
+- Navigation bar is visiable at all pages, and include authedUser's name and avatar.
+- User can navigate between homepage, leaderboad, new form, logout.
+
+## Architecture
+1. The store is the application’s source of truth.
+2. Most application state is managed by the Redux store. 
+3. Form inputs and controlled components may have some state handled by the component.
+4. Updates are triggered by dispatching action creators to reducers.
+
+## Unit Testing using jest
+The application requires `npm start test` in order to run all the unit tests in the project.
+
 
 ## Available Scripts
 

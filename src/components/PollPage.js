@@ -1,7 +1,8 @@
 import { connect } from "react-redux";
-import {handleVoteQuestion} from "../actions/shared";
+
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { TiHeartFullOutline } from "react-icons/ti";
+import NotFound from "./NotFound";
+import Option from "./Option";
 
 const withRouter = (Component) => {
     const ComponentWithRouterProp = (props) => {
@@ -16,11 +17,10 @@ const withRouter = (Component) => {
 
 const PollPage = (props)=>{
 
-    console.log(props);
-    const {dispatch, question, users, authedUser} = props;
+    const {question, users, authedUser} = props;
 
     let avatar = "";
-    if (users & question){
+    if (users && question){
         avatar = users[question.author].avatarURL
     }
 
@@ -46,74 +46,50 @@ const PollPage = (props)=>{
         return false
     }
     
-    const handleVote = (e)=>{
-        e.preventDefault();
-        const answer = e.target.value;
-        console.log(answer);
-        console.log(authedUser);
-        console.log(question.id)
-
-        if(!checkAlreadyVoted()){
-            dispatch(handleVoteQuestion({
-                authedUser, 
-                qid: question.id, 
-                answer,
-            }));
-            alert("Thanks for voting!!!")
-        }else{
-            alert("You already answer this question");
-        }
+    let numOfVotesOne= null;
+    let numOfVotesTwo = null;
+    if(question){
+        numOfVotesOne= question.optionOne.votes.length;
+        numOfVotesTwo= question.optionTwo.votes.length;
     }
 
-    const numOfVotesOne= question.optionOne.votes.length;
-    const numOfVotesTwo= question.optionTwo.votes.length;
     const numOfVotesTotal = numOfVotesOne+ numOfVotesTwo
     const percentageOfVotesOne= Math.round(numOfVotesOne/numOfVotesTotal * 100);
     const percentageOfVotesTwo= Math.round(numOfVotesTwo/numOfVotesTotal *100 );
-
+    
     return(
-        <div className="center">
-            <h3>{`Poll by ${question.author}`}</h3>
-            <img src={avatar} alt={`Avatar of ${question.author}`} className="big-avatar" />
-            <div>Would You Rather</div>
-            <div className="option-container">
-                <div className="option">
-                    <div className="option-text">{question.optionOne.text}</div>
-                    {alreadyVotedOne() ===true ? (
-                        <TiHeartFullOutline color="#e0245e" className="tweet-icon" />
-                    ): null}
-                    <button
-                        id="click"
-                        className="btn" 
-                        onClick={handleVote} 
-                        value={"optionOne"}
-                    >Click</button>
-                    {numOfVotesTotal >0 && (
-                        <div>
-                            <div className="vote-info">Number of Votes: {numOfVotesOne}/{numOfVotesTotal}</div>
-                            <div data-testid = "percentageOne" className="vote-info">Percentage of Votes: {percentageOfVotesOne} % </div>
-                        </div>
-                    )}
-                </div>
-                <div className="option">
-                    <div className="option-text"> {question.optionTwo.text}</div>
-                    {alreadyVotedTwo() === true ? (
-                        <TiHeartFullOutline color="#e0245e" className="tweet-icon" />
-                    ): null}
-                    <button 
-                        id="click"
-                        className="btn" 
-                        onClick={handleVote} 
-                        value={"optionTwo"}
-                    >Click</button>
-                    {numOfVotesTotal >0 && (
-                        <div>
-                            <div className="vote-info">Number of Votes: {numOfVotesTwo}/{numOfVotesTotal}</div>
-                            <div data-testid = "percentageTwo" className="vote-info">Percentage of Votes: {percentageOfVotesTwo} %</div>
-                        </div>
-                    )}
+        <div>
+        {!question
+        ? (<NotFound />)
+        : (
+            <div className="center">
+                <h3>{`Poll by ${question.author}`}</h3>
+                <img src={avatar} alt={`Avatar of ${question.author}`} className="big-avatar" />
+                <div>Would You Rather</div>
+                <div className="option-container">
+                    <Option
+                        className= "optionOne"
+                        question = {question}
+                        alreadyVoted = {alreadyVotedOne()}
+                        option = "optionOne"
+                        checkAlreadyVoted = {checkAlreadyVoted}
+                        numOfVotesTotal = {numOfVotesTotal}
+                        numOfVotesEach = {numOfVotesOne}
+                        percentageOfVotes = {percentageOfVotesOne}
+                    />
+                    <Option
+                        className= "optionTwo"
+                        question = {question}
+                        alreadyVoted = {alreadyVotedTwo()}
+                        option = "optionTwo"
+                        checkAlreadyVoted = {checkAlreadyVoted}
+                        numOfVotesTotal = {numOfVotesTotal}
+                        numOfVotesEach = {numOfVotesTwo}
+                        percentageOfVotes = {percentageOfVotesTwo}
+                    />
                 </div>
             </div>
+        )}
         </div>
     )
 }
@@ -121,7 +97,6 @@ const PollPage = (props)=>{
 const mapStateToProps = ({questions, users, authedUser}, props)=>{
     const {id} = props.router.params;
     const question = questions[id];
-    
     
     return{
         question,

@@ -13,9 +13,7 @@ const Nav = (props) => {
     const handleLogout =(e)=>{
         e.preventDefault();
         const id = null;
-        console.log(id)
         dispatch(handleLogIn(id));
-
     }
 
     return (
@@ -46,14 +44,13 @@ const Nav = (props) => {
                     : (
                         <li className="right-nav" onClick={handleLogout}>
                                 <Link to="/login">Login</Link>
-                            </li>
+                        </li>
                     )
                 }
                 </ul>
             </nav>
             <hr></hr>
         </div>
-      
     );
   };
   
@@ -61,6 +58,7 @@ const mapStateToProps = ({users, authedUser})=>{
     return{
         users,
         authedUser,
+
     }
 }
 export default connect(mapStateToProps)(Nav);

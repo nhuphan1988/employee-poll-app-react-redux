@@ -3,28 +3,24 @@ import { connect } from "react-redux";
 const Leaderboard = (props) =>{
     const {users} = props;
 
-    let data = []
-    let obj = {}
+    const data = []
+    let item = {}
     Object.values(users).map(user=>{
-        obj = {
+        item = {
             id: user.id,
             name: user.name,
             avatarURL: user.avatarURL,
             numofAnswers: Object.keys(user.answers).length,
             numofQuestions: user.questions.length
         }
-        data.push(obj)
+        data.push(item);
+        return data
     })
-    
-    console.log(data)
 
     const dataSorted = data
         .sort((a,b)=>b.numofAnswers - a.numofAnswers)    
         .sort((a,b)=>b.numofQuestions - a.numofQuestions)
         
-
-    
-
     const columns = [
         {heading: 'User'},
         {heading: 'Answered'},

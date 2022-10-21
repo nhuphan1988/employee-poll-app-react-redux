@@ -1,6 +1,6 @@
 import Nav from "../components/Nav";
 import * as React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render} from '@testing-library/react';
 import { Provider } from "react-redux";
 import { MemoryRouter as Router} from "react-router-dom";
 import configureStore from "redux-mock-store";
@@ -26,8 +26,6 @@ describe('Nav', () => {
         },
 		authedUser: 'tylermcginnis',
 		});
-
-        const {users, authedUser} = store.getState();
 
         const component = render(
             <Provider store={store} >

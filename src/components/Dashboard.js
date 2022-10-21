@@ -2,47 +2,42 @@ import { connect } from "react-redux";
 import ShortPollView from "./ShortPollView"
 
 const Dashboard = (props)=>{
-    console.log(props);
 
     const {questionAnsweredIds, questionUnAnsweredIds} = props
-
-    console.log(questionAnsweredIds);
-    console.log(questionUnAnsweredIds);
 
     return (
         <div>
             <div className="container">
-            <h3 className="center">New Questions</h3>
-            <hr></hr>
-            <ul className="questions-list">
-                {
-                    questionUnAnsweredIds.map((id)=>(
-                        <li className = "question-box" key={id}>
-                            <div>
-                                <ShortPollView id={id} />
-                            </div>
-                        </li>
-                    ))
-                }
-            </ul>
+                <h3 className="center">New Questions</h3>
+                <hr></hr>
+                <ul className="questions-list">
+                    {
+                        questionUnAnsweredIds.map((id)=>(
+                            <li className = "question-box" key={id}>
+                                <div>
+                                    <ShortPollView id={id} />
+                                </div>
+                            </li>
+                        ))
+                    }
+                </ul>
             </div>
             <div className="container">
-            <h3 className="center">Done</h3>
-            <hr></hr>
-            <ul className="questions-list">
-                {
-                    questionAnsweredIds.map((id)=>(
-                        <li className = "question-box" key={id}>
-                            <div>
-                                <ShortPollView id={id} />
-                            </div>
-                        </li>
-                    ))
-                }
-            </ul>
+                <h3 className="center">Done</h3>
+                <hr></hr>
+                <ul className="questions-list">
+                    {
+                        questionAnsweredIds.map((id)=>(
+                            <li className = "question-box" key={id}>
+                                <div>
+                                    <ShortPollView id={id} />
+                                </div>
+                            </li>
+                        ))
+                    }
+                </ul>
             </div>
         </div>
-        
     )
 }
 

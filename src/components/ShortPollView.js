@@ -9,12 +9,9 @@ const ShortPollView = (props)=>{
     const showDetailPoll = (e, id)=>{
         e.preventDefault ();
         navigate(`/question/${id}`);
-        //Redirect to show full poll page
-
     }
 
-    console.log(props)
-    const {author, timestamp, id}= props.question
+    const { author, timestamp, id } = props.question
     
     return (
         <Link to={`/question/${id}`}>
@@ -22,7 +19,6 @@ const ShortPollView = (props)=>{
                 <div className="question-info">
                     <div className="author">{author}</div>
                     <div className="date">{formatDate(timestamp)}</div>
-                    
                         <button 
                             id="show"
                             className="show-question btn center"
