@@ -30,7 +30,7 @@ const Nav = (props) => {
                                 <Link to="/leaderboard">Leaderboard</Link>
                             </li>
                             <li data-testid = "new" className="left-nav">
-                                <Link to="/new">New</Link>
+                                <Link to="/add">New</Link>
                             </li>
                             <li className="right-nav">
                                 <img data-testid = "avatar" src={avatar} alt={`Avatar of ${authedUser}`} className="avatar" />

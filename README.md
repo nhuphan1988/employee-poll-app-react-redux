@@ -1,8 +1,53 @@
 # Employee Polls App - React and Redux
 
-Employees can use this app internally in order to improve collaboration and transparency within the company, every employee can access the application and create a poll with two proposed solutions.
+This web app is for creating polls for coworkers where an employee can post a scenario question with 2 possible responses and then other employees respond. Employees can then vote on these responses and see which have the most votes. The goal is to improve collaboration and transparency within the company. The web app will provide a dashboard that lists every employee ordered by the number of polls they’ve created and answered. The app used React to render UI and used Redux to manage global state and pass data through the UI.
+
+## Getting started
+
+To get started developing right away:
+
+- clone the Project
+- install all project dependencies with `npm install`
+- start the development server with `npm start`
+
+## Running the tests
+
+- test used jest, @testing-library/react, and @testing-library/jest-dom
+- run the test with `npm test`
+
+- there are 10 tests in total:
+
+1. _saveQuestion(): An async unit test to verify that the saved question is returned and all expected fields are populated when correctly formatted data is passed to the function.
+
+2. _saveQuestion(): An async unit test to verify that an error is returned if incorrect data is passed to the function.
+
+3. _saveQuestionAnswer(): An async unit test to verify that true is returned when correctly formatted data is passed to the function.
+
+4. _saveQuestionAnswer(): An async unit test to verify that an error is returned if incorrect data is passed to the function.
+
+5. NewPoll component: toMatchSnapshot()
+
+6. ShortPollView component: toMatchSnapshot()
+
+7. Leaderboard component: is displaying the correct user name, number of questions asked, and number of questions answered
+
+8. LoginBox component: will have all expected fields (username, password, submit button).
+
+9. LoginBox component: will have an error on the page when user entering incorrect username or password.
+
+10. Nav component: navigation bar displays all expected links.
+
+## Built With
+
+- React: to render UI, manage local state and handle lifecycle events
+- Redux: to manage global state, handle async network requests, pass data through UI
+- Jest: to test the app
+
+## Author
+- Nhu Phan
 
 ## App Functionality
+
 1. User can log in and log out:
 - The application allows the user to log out and log back in. The user should be logged in to submit new polling questions, vote, and view the leaderboard.
 - Whenever the user types something in the address bar, the user is asked to log in before the requested page is shown (private routes)
@@ -10,10 +55,10 @@ Employees can use this app internally in order to improve collaboration and tran
 
 | id | password |
 |-----------------|------------------|
-|'sarahedo' |'password123'
-|'tylermcginnis'|'abc321'
-|'mtsamis' |'xyz123',
-|'zoshikanlu' |'pass246'
+|sarahedo |password123
+|tylermcginnis|abc321
+|mtsamis |xyz123
+|zoshikanlu |pass246
 
 2. Home Page/Dashboard:
 - Has answered and unanswered polls. Polling question resides in correct category
@@ -36,79 +81,3 @@ Employees can use this app internally in order to improve collaboration and tran
 - Navigation bar is visiable at all pages, and include authedUser's name and avatar.
 - User can navigate between homepage, leaderboad, new form, logout.
 
-## Architecture
-1. The store is the application’s source of truth.
-2. Most application state is managed by the Redux store. 
-3. Form inputs and controlled components may have some state handled by the component.
-4. Updates are triggered by dispatching action creators to reducers.
-
-## Unit Testing using jest
-The application requires `npm start test` in order to run all the unit tests in the project.
-
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

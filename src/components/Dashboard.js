@@ -1,42 +1,45 @@
 import { connect } from "react-redux";
-import ShortPollView from "./ShortPollView"
+import QuestionsList from "./QuestionsList";
+import { useState } from "react";
 
 const Dashboard = (props)=>{
 
     const {questionAnsweredIds, questionUnAnsweredIds} = props
 
+    const [showUnanswered, setShowUnanswered] = useState(true);
+
+    const handleShowUnanswered = (e)=>{
+        e.preventDefault();
+        setShowUnanswered(true)
+    }
+
+    const handleShowAnswered = (e)=>{
+        e.preventDefault();
+        setShowUnanswered(false)
+    }
+
     return (
         <div>
-            <div className="container">
-                <h3 className="center">New Questions</h3>
-                <hr></hr>
-                <ul className="questions-list">
-                    {
-                        questionUnAnsweredIds.map((id)=>(
-                            <li className = "question-box" key={id}>
-                                <div>
-                                    <ShortPollView id={id} />
-                                </div>
-                            </li>
-                        ))
-                    }
-                </ul>
-            </div>
-            <div className="container">
-                <h3 className="center">Done</h3>
-                <hr></hr>
-                <ul className="questions-list">
-                    {
-                        questionAnsweredIds.map((id)=>(
-                            <li className = "question-box" key={id}>
-                                <div>
-                                    <ShortPollView id={id} />
-                                </div>
-                            </li>
-                        ))
-                    }
-                </ul>
-            </div>
+            {showUnanswered && (
+                <div className="container center">
+                    <h3 className="center">New Questions</h3>
+                    <hr></hr>
+                    <QuestionsList questions = {questionUnAnsweredIds}/>
+                    <button id = "click" className="btn center" onClick={handleShowAnswered}>
+                            Show Answered Questions
+                    </button>
+                </div>
+            )}
+            {!showUnanswered && (
+                <div className="container center">
+                    <h3 className="center">Done</h3>
+                    <hr></hr>
+                    <QuestionsList questions = {questionAnsweredIds}/>
+                    <button id = "click" className="btn center" onClick={handleShowUnanswered}>
+                        Show Unanswered Questions
+                    </button>
+                </div>
+            )}
         </div>
     )
 }

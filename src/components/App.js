@@ -26,8 +26,8 @@ const App = (props) =>{
                     <Route element={<PrivateRoutes signIn={props.signIn}/>}>
                         <Route exact path="/" element={<Dashboard />} />
                         <Route path="/leaderboard" element={<Leaderboard />} />
-                        <Route path="/question/:id" element={<PollPage />} />
-                        <Route path="/new" element={<NewPoll />} />
+                        <Route path="/questions/:id" element={<PollPage />} />
+                        <Route path="/add" element={<NewPoll />} />
                         <Route path="*" element={<NotFound />} />
                     </Route>
                 </Routes>  
