@@ -7,6 +7,7 @@ Employees can use this app internally in order to improve collaboration and tran
 - The application allows the user to log out and log back in. The user should be logged in to submit new polling questions, vote, and view the leaderboard.
 - Whenever the user types something in the address bar, the user is asked to log in before the requested page is shown (private routes)
 - List of username and password to log in:
+
 | id | password |
 |-----------------|------------------|
 |'sarahedo' |'password123'
