@@ -70,7 +70,7 @@ To get started developing right away:
 - User is able to vote. Upon voting, all information is displayed, including user's response. When user come back to homepage, the polling question appears in "Answered" section. Data of leaderboard will change accordingly.
 
 4. Add New Poll:
-- The form is available at "/new".
+- The form is available at "/add".
 - Upon submitting the form, a new poll is created. The new polling question appears in the correct category on the home page.
 
 5. Leaderboard:
