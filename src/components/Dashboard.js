@@ -8,14 +8,9 @@ const Dashboard = (props)=>{
 
     const [showUnanswered, setShowUnanswered] = useState(true);
 
-    const handleShowUnanswered = (e)=>{
+    const handleToggle = (e)=>{
         e.preventDefault();
-        setShowUnanswered(true)
-    }
-
-    const handleShowAnswered = (e)=>{
-        e.preventDefault();
-        setShowUnanswered(false)
+        setShowUnanswered(!showUnanswered)
     }
 
     return (
@@ -25,7 +20,7 @@ const Dashboard = (props)=>{
                     <h3 className="center">New Questions</h3>
                     <hr></hr>
                     <QuestionsList questions = {questionUnAnsweredIds}/>
-                    <button id = "click" className="btn center" onClick={handleShowAnswered}>
+                    <button id = "click" className="btn center" onClick={handleToggle}>
                             Show Answered Questions
                     </button>
                 </div>
@@ -35,7 +30,7 @@ const Dashboard = (props)=>{
                     <h3 className="center">Done</h3>
                     <hr></hr>
                     <QuestionsList questions = {questionAnsweredIds}/>
-                    <button id = "click" className="btn center" onClick={handleShowUnanswered}>
+                    <button id = "click" className="btn center" onClick={handleToggle}>
                         Show Unanswered Questions
                     </button>
                 </div>
