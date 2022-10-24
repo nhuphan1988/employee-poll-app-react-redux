@@ -22,6 +22,10 @@ const NewPoll = ({dispatch})=>{
         setTextOptionTwo(textOptionTwo);
     };
     
+    /* after submit button is clicked, check if textOptionOne and textOptionTwo are valid
+    if yes, call function handleAddQuestion to add new question to questions object on store
+    then empty texarea and navigate to home page "/"
+    */
     const handleSubmit = (e) => {
         e.preventDefault();
         if(!textOptionOne || !textOptionTwo){

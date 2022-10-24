@@ -8,6 +8,10 @@ const Option = (props)=>{
         question, checkAlreadyVoted, alreadyVoted, option, 
         numOfVotesTotal, numOfVotesEach, percentageOfVotes} = props;
 
+    /* if question already voted, alert("You've already answered this question") 
+    if not yet, call func handleVoteQuestion to change questions and users object in the store
+    and then alert("Thanks for voting!!!") to let user knows
+    */
     const handleVote = (e)=>{
         e.preventDefault();
         const answer = e.target.value;

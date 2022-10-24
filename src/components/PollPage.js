@@ -1,14 +1,20 @@
 import { connect } from "react-redux";
-
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import NotFound from "./NotFound";
 import Option from "./Option";
 
+/* wrap PollPage component within withRouter component 
+which return router with location and params from current URL to get the question id,
+the page will display <Not Found /> component if id is invalid
+*/
 const withRouter = (Component) => {
     const ComponentWithRouterProp = (props) => {
       let location = useLocation();
       let navigate = useNavigate();
       let params = useParams();
+      console.log(location)
+      console.log(params)
+   
       return <Component {...props} router={{ location, navigate, params }} />;
     };
   

@@ -21,7 +21,7 @@ const Dashboard = (props)=>{
                     <hr></hr>
                     <QuestionsList questions = {questionUnAnsweredIds}/>
                     <button id = "click" className="btn center" onClick={handleToggle}>
-                            Show Answered Questions
+                        Show Answered Questions
                     </button>
                 </div>
             )}

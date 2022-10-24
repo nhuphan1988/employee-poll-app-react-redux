@@ -10,6 +10,7 @@ const Nav = (props) => {
         avatar = users[authedUser].avatarURL;
     }
 
+    // if user clicks logout button, will set authedUser to null and navigate to '/login'
     const handleLogout =(e)=>{
         e.preventDefault();
         const id = null;

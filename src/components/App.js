@@ -10,6 +10,7 @@ import Nav from "./Nav";
 import { Routes, Route} from "react-router-dom";
 import NotFound from "./NotFound";
 import PrivateRoutes from "./PrivateRoutes";
+import { LoadingBar } from "react-redux-loading-bar";
 
 const App = (props) =>{
 
@@ -20,6 +21,7 @@ const App = (props) =>{
     return (
         <Fragment>
             <div className="app-container">
+                <LoadingBar />
                 <Nav />
                 <Routes>
                     <Route path="/login" element={<LogInBox />} />

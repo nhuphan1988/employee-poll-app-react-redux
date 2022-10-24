@@ -15,6 +15,10 @@ export function handleInitialData(){
     }
 }
 
+/* after voting, return the saveQuestionAnswer api to save change to backend,
+ then add authedUser id to the votes array of answer question,
+ and add question id to the questions array of authedUser in the users object.
+ */
 export function handleVoteQuestion({authedUser, qid, answer}){
     return (dispatch, getState) => {
         const { users } = getState();
@@ -24,6 +28,10 @@ export function handleVoteQuestion({authedUser, qid, answer}){
     }
 }
 
+
+/* after adding, return the saveQuestion api to save change to backend,
+ then add formated question to the questions object
+ */
 export function handleAddQuestion(optionOneText, optionTwoText){
     return(dispatch, getState)=>{
         const{ authedUser, users } = getState();

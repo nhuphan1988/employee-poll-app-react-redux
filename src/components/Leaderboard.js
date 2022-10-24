@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 const Leaderboard = (props) =>{
     const {users} = props;
 
+    // create data array to put on the table
     const data = []
     let item = {}
     Object.values(users).map(user=>{
@@ -17,10 +18,12 @@ const Leaderboard = (props) =>{
         return data
     })
 
+    // table is sorted by number of questions created, and then by number of questions answered
     const dataSorted = data
         .sort((a,b)=>b.numofAnswers - a.numofAnswers)    
         .sort((a,b)=>b.numofQuestions - a.numofQuestions)
-        
+    
+    // create columns array for the table
     const columns = [
         {heading: 'User'},
         {heading: 'Answered'},

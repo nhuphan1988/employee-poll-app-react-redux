@@ -23,6 +23,7 @@ const LogInBox = (props)=>{
         setLogInPassword(logInPassword);
     };
 
+    // check if username is valid, and passwork matchs with password of that username in backend data
     const passwordMatched=()=>{        
         if(users[logInUser] && users[logInUser].password === logInPassword){
             setError(false)
@@ -33,6 +34,9 @@ const LogInBox = (props)=>{
         }
     }
 
+    /* after submit, if password matched, will set loginUser value to authedUser, 
+    and navigate back to previous page 
+    */
     const handleSubmit=(e)=>{
         e.preventDefault();
 
