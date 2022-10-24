@@ -12,9 +12,7 @@ const withRouter = (Component) => {
       let location = useLocation();
       let navigate = useNavigate();
       let params = useParams();
-      console.log(location)
-      console.log(params)
-   
+
       return <Component {...props} router={{ location, navigate, params }} />;
     };
   
